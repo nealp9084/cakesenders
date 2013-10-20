@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Realname:</strong>
+  <%= @user.realname %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user.password %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Customer token:</strong>
+  <%= @user.customer_token %>
+</p>
+
+<p>
+  <strong>Twitter:</strong>
+  <%= @user.twitter_id %>
+</p>
+
+<p>
+  <strong>Facebook:</strong>
+  <%= @user.facebook_id %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

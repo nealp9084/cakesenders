@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  goodie_id: 
+  destination: MyText
+  charge_token: MyString
+
+two:
+  user_id: 
+  goodie_id: 
+  destination: MyText
+  charge_token: MyString

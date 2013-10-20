@@ -1,0 +1,31 @@
+<h1>Listing goodies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @goodies.each do |goody| %>
+      <tr>
+        <td><%= goody.name %></td>
+        <td><%= goody.description %></td>
+        <td><%= goody.price %></td>
+        <td><%= link_to 'Show', goody %></td>
+        <td><%= link_to 'Edit', edit_goody_path(goody) %></td>
+        <td><%= link_to 'Destroy', goody, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Goody', new_goody_path %>
