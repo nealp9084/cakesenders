@@ -5,11 +5,12 @@
     <tr>
       <th>Realname</th>
       <th>Username</th>
-      <th>Password</th>
+      <th>Password Hash</th>
       <th>Email</th>
       <th>Customer token</th>
       <th>Twitter</th>
       <th>Facebook</th>
+      <th>Admin</th>
       <th></th>
       <th></th>
       <th></th>
@@ -21,11 +22,12 @@
       <tr>
         <td><%= user.realname %></td>
         <td><%= user.username %></td>
-        <td><%= user.password %></td>
+        <td><%= user.password_hash %></td>
         <td><%= user.email %></td>
         <td><%= user.customer_token %></td>
         <td><%= user.twitter_id %></td>
         <td><%= user.facebook_id %></td>
+        <td><%= user.admin %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>

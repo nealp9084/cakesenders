@@ -34,13 +34,14 @@ ActiveRecord::Schema.define(version: 20131020043550) do
   add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "users", force: true do |t|
-    t.string   "realname",       null: false
-    t.string   "username",       null: false
-    t.binary   "password",       null: false
-    t.string   "email",          null: false
+    t.string   "realname",                       null: false
+    t.string   "username",                       null: false
+    t.string   "password_hash",                  null: false
+    t.string   "email",                          null: false
     t.string   "customer_token"
     t.string   "twitter_id"
     t.string   "facebook_id"
+    t.boolean  "admin",          default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

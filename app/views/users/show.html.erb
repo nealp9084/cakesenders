@@ -11,8 +11,8 @@
 </p>
 
 <p>
-  <strong>Password:</strong>
-  <%= @user.password %>
+  <strong>Password Hash:</strong>
+  <%= @user.password_hash %>
 </p>
 
 <p>
@@ -33,6 +33,11 @@
 <p>
   <strong>Facebook:</strong>
   <%= @user.facebook_id %>
+</p>
+
+<p>
+  <strong>Admin:</strong>
+  <%= @user.admin %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
