@@ -1,0 +1,30 @@
+<nav class="navbar navbar-default" role="navigation">
+  <!-- Brand and toggle -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <%= link_to 'CakeSenders', :root, class: 'navbar-brand' %>
+  </div>
+
+  <!-- Rest of the nav -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <!-- Main nav links -->
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Baked Goods', :goodies %></li>
+      <li><%= link_to 'Your Orders', :orders %></li>
+      <li><a href="#">Wishlist</a></li>
+    </ul>
+
+    <!-- Other nav stuff -->
+    <ul class="nav navbar-nav navbar-right">
+      <!-- TODO! -->
+      <li><%= link_to 'Profile', :users %></li>
+      <!-- TODO! -->
+      <li><%= link_to 'Login/Logout', '#' %></li>
+    </ul>
+  </div>
+</nav>
