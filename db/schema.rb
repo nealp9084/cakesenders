@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(version: 20131020043550) do
 
   create_table "goodies", force: true do |t|
-    t.string   "name",                                 null: false
-    t.text     "description",                          null: false
-    t.decimal  "price",       precision: 10, scale: 0, null: false
+    t.string   "name",        null: false
+    t.text     "description", null: false
+    t.decimal  "price",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20131020043550) do
     t.datetime "updated_at"
   end
 
-  add_index "orders", ["goodie_id"], name: "index_orders_on_goodie_id", using: :btree
-  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+  add_index "orders", ["goodie_id"], name: "index_orders_on_goodie_id"
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "realname",       null: false

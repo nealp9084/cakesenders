@@ -4,10 +4,11 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'sqlite3'
 
-# Use v8 for the js runtime
-gem 'therubyracer'
+# Use Rhino as the js runtime
+gem 'execjs'
+gem 'therubyrhino'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
