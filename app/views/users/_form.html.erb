@@ -1,7 +1,7 @@
-<%= form_for(@user) do |f| %>
+<%= form_for(@user, html: { role: 'form' }) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <p class="text-error">Uh oh, something's wrong!</p>
 
       <ul>
       <% @user.errors.full_messages.each do |msg| %>
@@ -11,35 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :realname %><br>
-    <%= f.text_field :realname %>
+  <div class="<%= form_group_class :realname %>">
+    <%= f.label :realname, 'Real Name' %><br>
+    <%= f.text_field :realname, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="<%= form_group_class :username %>">
     <%= f.label :username %><br>
-    <%= f.text_field :username %>
+    <%= f.text_field :username, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.text_field :password %>
+  <div class="<%= form_group_class :password_hash %>">
+    <%= f.label :password_hash, 'Password' %><br>
+    <%= f.password_field :password_hash, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+  <div class="<%= form_group_class :email %>">
+    <%= f.label :email, 'Email Address' %><br>
+    <%= f.text_field :email, class: 'form-control', type: 'email' %>
   </div>
-  <div class="field">
-    <%= f.label :customer_token %><br>
-    <%= f.text_field :customer_token %>
+  <div class="form-group">
+    <%= f.label :twitter_id, 'Twitter Account (optional)' %><br>
+    <div class="input-group">
+      <span class="input-group-addon">@</span>
+      <%= f.text_field :twitter_id, class: 'form-control', placeholder: 'username' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :twitter_id %><br>
-    <%= f.text_field :twitter_id %>
+  <div class="form-group">
+    <%= f.label :facebook_id, 'Facebook Account (optional)' %><br>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+      <%= f.text_field :facebook_id, class: 'form-control', placeholder: 'username' %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :facebook_id %><br>
-    <%= f.text_field :facebook_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <!-- <div class="actions"> -->
+    <%= f.submit 'Sign Up!', class: 'btn btn-primary' %>
+  <!-- </div> -->
 <% end %>

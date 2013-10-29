@@ -3,6 +3,7 @@ Cakesenders::Application.routes.draw do
   root 'welcome#index'
 
   resources :users
+  get 'signup' => 'users#new'
   resources :orders
   resources :goodies
 

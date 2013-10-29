@@ -4,7 +4,7 @@ class CreateOrders < ActiveRecord::Migration
       t.references :user, index: true, null: false
       t.references :goodie, index: true, null: false
       t.text :destination, null: false
-      t.string :charge_token, null: false
+      t.string :charge_token, null: false, unique: true
 
       t.timestamps
     end

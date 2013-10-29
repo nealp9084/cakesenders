@@ -36,6 +36,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# Use scrypt for secure password hashing
+gem 'scrypt'
+
+# Validate email addresses
+gem 'email_validator'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
