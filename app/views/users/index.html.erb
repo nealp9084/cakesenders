@@ -1,18 +1,15 @@
 <h1>Listing users</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Realname</th>
       <th>Username</th>
-      <th>Password Hash</th>
       <th>Email</th>
       <th>Customer token</th>
       <th>Twitter</th>
       <th>Facebook</th>
       <th>Admin</th>
-      <th></th>
-      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -22,15 +19,18 @@
       <tr>
         <td><%= user.realname %></td>
         <td><%= user.username %></td>
-        <td><%= user.password_hash %></td>
         <td><%= user.email %></td>
         <td><%= user.customer_token %></td>
         <td><%= user.twitter_id %></td>
         <td><%= user.facebook_id %></td>
         <td><%= user.admin %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to 'Show', user, class: 'btn btn-primary' %>
+            <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-warning' %>
+            <%= link_to 'Destroy', user, method: :delete, class: 'btn btn-danger' %>
+          </div>
+        </td>
       </tr>
     <% end %>
   </tbody>

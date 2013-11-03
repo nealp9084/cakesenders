@@ -42,6 +42,10 @@ gem 'scrypt'
 # Validate email addresses
 gem 'email_validator'
 
+# Debugging helpers
+gem 'binding_of_caller'
+gem 'better_errors'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -1,7 +1,7 @@
 <%= form_for(@user, html: { role: 'form' }) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
-      <p class="text-error">Uh oh, something's wrong!</p>
+      <p>Uh oh, something's wrong!</p>
 
       <ul>
       <% @user.errors.full_messages.each do |msg| %>
@@ -12,36 +12,34 @@
   <% end %>
 
   <div class="<%= form_group_class :realname %>">
-    <%= f.label :realname, 'Real Name' %><br>
+    <%= f.label :realname, 'Real Name' %>
     <%= f.text_field :realname, class: 'form-control' %>
   </div>
   <div class="<%= form_group_class :username %>">
-    <%= f.label :username %><br>
+    <%= f.label :username %>
     <%= f.text_field :username, class: 'form-control' %>
   </div>
   <div class="<%= form_group_class :password_hash %>">
-    <%= f.label :password_hash, 'Password' %><br>
+    <%= f.label :password_hash, 'Password' %>
     <%= f.password_field :password_hash, class: 'form-control' %>
   </div>
   <div class="<%= form_group_class :email %>">
-    <%= f.label :email, 'Email Address' %><br>
+    <%= f.label :email, 'Email Address' %>
     <%= f.text_field :email, class: 'form-control', type: 'email' %>
   </div>
   <div class="form-group">
-    <%= f.label :twitter_id, 'Twitter Account (optional)' %><br>
+    <%= f.label :twitter_id, 'Twitter Account (optional)' %>
     <div class="input-group">
       <span class="input-group-addon">@</span>
       <%= f.text_field :twitter_id, class: 'form-control', placeholder: 'username' %>
     </div>
   </div>
   <div class="form-group">
-    <%= f.label :facebook_id, 'Facebook Account (optional)' %><br>
+    <%= f.label :facebook_id, 'Facebook Account (optional)' %>
     <div class="input-group">
       <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
       <%= f.text_field :facebook_id, class: 'form-control', placeholder: 'username' %>
     </div>
   </div>
-  <!-- <div class="actions"> -->
-    <%= f.submit 'Sign Up!', class: 'btn btn-primary' %>
-  <!-- </div> -->
+  <%= f.submit 'Sign Up!', class: 'btn btn-primary' %>
 <% end %>

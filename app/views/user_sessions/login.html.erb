@@ -1,0 +1,19 @@
+<% if has_flash? %>
+  <div class="<%= flash_class %>">
+    <p><%= flash_notice %></p>
+  </div>
+<% end %>
+
+<h1>Log In</h1>
+
+<%= form_for :user_session do |f| %>
+  <div class="<%= form_group_class %>">
+    <%= f.label :username %>
+    <%= f.text_field :username, class: 'form-control' %>
+  </div>
+  <div class="<%= form_group_class %>">
+    <%= f.label :password, 'Password' %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+  <%= f.submit 'Log In!', class: 'btn btn-default' %>
+<% end %>

@@ -26,3 +26,29 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+-----
+
+Distinct functionalities:
+
+* Create/edit/delete/view user accounts
+
+* Log in/out securely
+
+* Create/edit/delete/view goodies (the various baked goods)
+
+* Create/edit/delete/view orders (and order history)
+
+* Leave comments on goodies
+
+* Email notification when a user account is created
+
+The entire web application is built with Ruby on Rails. Whenever Rails interacts with the database, it uses parameterized queries, so SQL injection is not possible.
+
+The web application uses Twitter Bootstrap 3 for all of the visual styles. It should look nice on desktop computers and ALSO MOBILE DEVICES. I tried to make the pages as pretty as possible, but polishing a web application takes a LOT of time, and there are over 20 different pages to polish.
+
+Passwords are salted with a randomly-generated salt and hashed with scrypt.
+
+Sessions are currently used to store the web application state. There are many benefits to using sessions. On an ecommerce website, you want to prompt your users to log in before doing anything important; because of the fact that sessions expire, users MUST sign in after inactivity. Second, sessions offer more security; no sensitive data will ever be stored on the user's computer. Lastly, sessions are ridiculously easy to implement.
+
+Types of users: unregistered (anonymous) users, registered users, admins

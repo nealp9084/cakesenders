@@ -1,14 +1,39 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :deny_nonadmins, only: [:index]
+  before_action :deny_nonself, only: [:show, :edit, :update, :destroy]
+  before_action :deny_loggedin, only: [:new, :create]
+
+  def deny_nonadmins
+    unless admin?
+      flash[:status] = 'alert-danger'
+      flash[:notice] = "You don't have permission to do that."
+      redirect_to :root
+    end
+  end
+
+  def deny_nonself
+    unless current_user == @user || admin?
+      flash[:status] = 'alert-danger'
+      flash[:notice] = "You don't have permission to do that."
+      redirect_to current_user || :root
+    end
+  end
+
+  def deny_loggedin
+    if logged_in? && !admin?
+      flash[:status] = 'alert-warning'
+      flash[:notice] = "You are already have an account (and are logged in)."
+      redirect_to current_user
+    end
+  end
 
   # GET /users
-  # GET /users.json
   def index
     @users = User.all
   end
 
   # GET /users/1
-  # GET /users/1.json
   def show
   end
 
@@ -22,42 +47,43 @@ class UsersController < ApplicationController
   end
 
   # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
 
     respond_to do |format|
       if @user.register
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user }
+        # Send a welcome email
+        UsersMailer.welcome_email(@user).deliver
+
+        session[:user_id] = @user.id
+
+        format.html do
+          flash[:status] = 'alert-success'
+          flash[:notice] = "Signup complete. You're one step closer to getting some delicious baked goods!"
+          redirect_to :root
+        end
       else
         format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url }
-      format.json { head :no_content }
     end
   end
 

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :orders
+  has_many :comments
 
   validates_uniqueness_of :username, :email
   validates :email, :email => true
@@ -9,7 +10,7 @@ class User < ActiveRecord::Base
 
   def check_password(pw)
     if pw.length < 6 || pw.blank?
-      self.errors.add(:password, "can't be blank and must be at least 6 characters")
+      self.errors.add(:password_hash, "must be at least 6 characters")
       return false
     else
       return true
@@ -30,7 +31,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  # TODO: validation on password quality!
+  # TODO: validation on password quality?
   def update(user_params)
     new_pw = user_params['password_hash']
 
@@ -51,5 +52,16 @@ class User < ActiveRecord::Base
       user_params.delete('password_hash') if new_pw
       return super(user_params)
     end
+  end
+
+  def self.authenticate(username, password)
+    user = User.find_by_username(username)
+
+    if user
+      real_password = SCrypt::Password.new(user.password_hash)
+      return user if real_password == password
+    end
+
+    return nil
   end
 end

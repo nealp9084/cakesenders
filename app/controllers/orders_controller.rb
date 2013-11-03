@@ -1,14 +1,48 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :deny_nonloggedin
+  before_action :deny_nonown, only: [:show, :edit, :update, :destroy]
+  before_action :deny_nonadmins, only: [:edit, :update, :destroy]
+
+  def deny_nonloggedin
+    unless logged_in?
+      flash[:status] = 'alert-danger'
+      flash[:notice] = 'You must be logged in to see your orders.'
+      redirect_to :login
+    end
+  end
+
+  def deny_nonown
+    unless current_user == @order.user || admin?
+      flash[:status] = 'alert-danger'
+      flash[:notice] = "You don't have permission to do that."
+      redirect_to :orders
+    end
+  end
+
+  def deny_nonadmins
+    unless admin?
+      flash[:status] = 'alert-danger'
+      flash[:notice] = "You don't have permission to do that."
+
+      if current_user == @order.user
+        redirect_to @order
+      else
+        redirect_to :orders
+      end
+    end
+  end
 
   # GET /orders
-  # GET /orders.json
   def index
-    @orders = Order.all
+    if admin?
+      @orders = Order.all
+    else
+      @orders = Order.where(user: current_user)
+    end
   end
 
   # GET /orders/1
-  # GET /orders/1.json
   def show
   end
 
@@ -22,42 +56,38 @@ class OrdersController < ApplicationController
   end
 
   # POST /orders
-  # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.user = current_user unless admin?
 
     respond_to do |format|
-      if @order.save
+      if admin? and @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @order }
       else
         format.html { render action: 'new' }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /orders/1
-  # PATCH/PUT /orders/1.json
   def update
+    @order.assign_attributes(order_params)
+    @order.user = current_user unless admin?
+
     respond_to do |format|
-      if @order.update(order_params)
+      if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /orders/1
-  # DELETE /orders/1.json
   def destroy
     @order.destroy
     respond_to do |format|
       format.html { redirect_to orders_url }
-      format.json { head :no_content }
     end
   end
 

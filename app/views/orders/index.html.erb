@@ -1,33 +1,58 @@
-<h1>Listing orders</h1>
+<% if has_flash? %>
+  <div class="<%= flash_class %>">
+    <p><%= flash_notice %></p>
+  </div>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Goodie</th>
-      <th>Destination</th>
-      <th>Charge token</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<% if has_flash? %>
+  <div class="<%= flash_class %>">
+    <p><%= flash_notice %></p>
+  </div>
+<% end %>
 
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.user %></td>
-        <td><%= order.goodie %></td>
-        <td><%= order.destination %></td>
-        <td><%= order.charge_token %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1>Order History</h1>
+    </div>
+    <div class="panel-body">
+      <p>This page contains a history of all the orders you ever made. Just in case you want to order again.</p>
+    </div>
 
-<br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <% if admin? %>
+            <th>User</th>
+          <% end %>
+          <th>Goodie</th>
+          <th>Destination Address</th>
+          <th>Charge Token</th>
+          <th></th>
+        </tr>
+      </thead>
 
-<%= link_to 'New Order', new_order_path %>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <% if admin? %>
+              <td><%= link_to order.user.username, order.user %></td>
+            <% end %>
+            <td><%= link_to order.goodie.name, order.goodie %></td>
+            <td><%= order.destination %></td>
+            <td><%= order.charge_token %></td>
+            <td>
+              <div class="btn-group">
+                <%= link_to 'Show', order, class: 'btn btn-primary' %>
+                <% if admin? %>
+                  <%= link_to 'Edit', edit_order_path(order), class: 'btn btn-warning' %>
+                  <%= link_to 'Destroy', order, method: :delete, class: 'btn btn-danger' %>
+                <% end %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

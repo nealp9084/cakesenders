@@ -1,31 +1,23 @@
-<h1>Listing goodies</h1>
+<% if has_flash? %>
+  <div class="<%= flash_class %>">
+    <p><%= flash_notice %></p>
+  </div>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<h1>Baked Goods</h1>
 
-  <tbody>
-    <% @goodies.each do |goody| %>
-      <tr>
-        <td><%= goody.name %></td>
-        <td><%= goody.description %></td>
-        <td><%= goody.price %></td>
-        <td><%= link_to 'Show', goody %></td>
-        <td><%= link_to 'Edit', edit_goody_path(goody) %></td>
-        <td><%= link_to 'Destroy', goody, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% @goodies.each_slice(3) do |slice| %>
+  <div class="row">
+    <% slice.each do |goodie| %>
+      <div class="col-md-4 col-sm-4">
+        <%= partial 'thumbnail', goodie: goodie %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+<% end %>
 
 <br>
 
-<%= link_to 'New Goody', new_goody_path %>
+<% if admin? %>
+  <%= link_to 'New Goodie', new_goodie_path %>
+<% end %>
