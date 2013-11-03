@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  # if you are not logged in, you cannot change anything
   before_action :deny_nonloggedin, only: [:create, :edit, :update, :destroy]
+  # if the comment is not yours, you cannot modify it
   before_action :deny_nonown, only: [:edit, :update, :destroy]
-  before_action :deny_nonadmin, only: [:index]
 
   def deny_nonloggedin
     unless logged_in?
@@ -16,21 +17,17 @@ class CommentsController < ApplicationController
     unless current_user == @comment.user || admin?
       flash[:status] = 'alert-danger'
       flash[:notice] = "You don't have permission to do that."
-      redirect_to @comment.goodie
-    end
-  end
-
-  def deny_nonadmins
-    unless admin?
-      flash[:status] = 'alert-danger'
-      flash[:notice] = "You don't have permission to do that."
-      redirect_to :root
+      redirect_to @comment
     end
   end
 
   # GET /comments
   def index
-    @comments = Comment.all
+    if admin?
+      @comments = Comment.all
+    else
+      @comments = Comment.where(user: current_user)
+    end
   end
 
   # GET /comments/1
@@ -52,7 +49,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user unless admin?
 
     respond_to do |format|
-      if @comment.save
+      if Goodie.exists?(comment_params[goodie_id]) && @comment.save
         format.html { redirect_to @comment.goodie, notice: 'Comment was successfully created.' }
       else
         format.html { render action: 'new' }

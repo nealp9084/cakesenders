@@ -14,8 +14,9 @@
 <hr>
 
 <div class="btn-group">
+  <%= link_to 'Back', comments_path, class: 'btn btn-default' %>
   <% if @comment.user == current_user || admin? %>
     <%= link_to 'Edit', edit_comment_path(@comment), class: 'btn btn-warning' %>
+    <%= link_to 'Destroy', @comment, method: :delete, class: 'btn btn-danger' %>
   <% end %>
-  <%= link_to 'Back', comments_path, class: 'btn btn-default' %>
 </div>

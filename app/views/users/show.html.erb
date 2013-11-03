@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% if has_flash? %>
+  <div class="<%= flash_class %>">
+    <p><%= flash_notice %></p>
+  </div>
+<% end %>
 
 <p>
   <strong>Realname:</strong>
@@ -35,5 +39,8 @@
   <%= @user.admin %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="btn-group">
+  <%= link_to 'Back', users_path, class: 'btn btn-default' %>
+  <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-warning' %>
+  <%= link_to 'Destroy', @user, method: :delete, class: 'btn btn-danger' %>
+</div>

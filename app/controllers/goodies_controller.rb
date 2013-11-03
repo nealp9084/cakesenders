@@ -1,5 +1,6 @@
 class GoodiesController < ApplicationController
   before_action :set_goodie, only: [:show, :edit, :update, :destroy]
+  # if you are not an admin, you cannot change anything
   before_action :deny_nonadmins, only: [:new, :edit, :create, :update, :destroy]
 
   def deny_nonadmins

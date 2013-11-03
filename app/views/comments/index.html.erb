@@ -1,31 +1,50 @@
-<h1>Listing comments</h1>
+<% if has_flash? %>
+  <div class="<%= flash_class %>">
+    <p><%= flash_notice %></p>
+  </div>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Goodie</th>
-      <th>User</th>
-      <th>Content</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="table-responsive">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1>Listing comments</h1>
+    </div>
 
-  <tbody>
-    <% @comments.each do |comment| %>
-      <tr>
-        <td><%= comment.goodie %></td>
-        <td><%= comment.user %></td>
-        <td><%= comment.content %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="panel-body">
+      <p>This page contains a history of all the comments you ever made. Just in case you wanted to read them again.</p>
+      <% if admin? %>
+        <p class="text-muted">Since you are an admin, all comments will be displayed.</p>
+      <% end %>
+    </div>
 
-<br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Goodie</th>
+          <th>User</th>
+          <th>Content</th>
+          <th></th>
+        </tr>
+      </thead>
 
-<%= link_to 'New Comment', new_comment_path %>
+      <tbody>
+        <% @comments.each do |comment| %>
+          <tr>
+            <td><%= link_to comment.goodie.name, comment.goodie %></td>
+            <td><%= link_to comment.user.username, comment.user %></td>
+            <td><%= comment.content %></td>
+            <td>
+              <div class="btn-group">
+                <%= link_to 'Show', comment, class: 'btn btn-primary' %>
+                <%= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-warning' %>
+                <%= link_to 'Destroy', comment, method: :delete, class: 'btn btn-danger' %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= link_to 'New Comment', new_comment_path, class: 'btn btn-success' %>

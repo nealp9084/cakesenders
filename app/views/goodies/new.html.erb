@@ -1,3 +1,13 @@
+<% if has_flash? %>
+  <div class="<%= flash_class %>">
+    <p><%= flash_notice %></p>
+  </div>
+<% end %>
+
 <h1>New Goodie</h1>
 
 <%= render 'form' %>
+
+<hr>
+
+<%= link_to 'Back', goodies_path, class: 'btn btn-default' %>

@@ -25,21 +25,8 @@
   </article>
 </div>
 
-<div class="row">
-  <div class="col-md-4 col-sm-4">
-    <div class="btn-group">
-      <%= link_to 'Back', goodies_path, class: 'btn btn-default' %>
-      <% if admin? %>
-        <%= link_to 'Edit', edit_goodie_path(@goodie), class: 'btn btn-default' %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="col-md-8 col-sm-8">
-    <div class="pull-right">
-      <%= link_to 'Purchase!', new_order_path, class: 'btn btn-success' %>
-    </div>
-  </div>
+<div>
+  <%= link_to 'Purchase!', new_order_path, class: 'btn btn-success' %>
 </div>
 
 <hr>
@@ -51,7 +38,9 @@
     <blockquote>
       <p><%= comment.content %></p>
       <small>
-        <cite><%= comment.user.username %></cite> at <%= localize comment.created_at %>
+        <a href="<%= url_for comment %>">
+          <cite><%= comment.user.username %></cite> at <%= localize comment.created_at %>
+        </a>
       </small>
     </blockquote>
   <% end %>
@@ -59,4 +48,14 @@
 
 <div>
   <%= link_to 'Add your own comment', new_comment_path, class: 'btn btn-default btn-xs' %>
+</div>
+
+<hr>
+
+<div class="btn-group">
+  <%= link_to 'Back', goodies_path, class: 'btn btn-default' %>
+  <% if admin? %>
+    <%= link_to 'Edit', edit_goodie_path(@goodie), class: 'btn btn-warning' %>
+    <%= link_to 'Destroy', @goodie, method: :delete, class: 'btn btn-danger' %>
+  <% end %>
 </div>

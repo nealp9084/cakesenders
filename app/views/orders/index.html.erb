@@ -15,8 +15,12 @@
     <div class="panel-heading">
       <h1>Order History</h1>
     </div>
+
     <div class="panel-body">
       <p>This page contains a history of all the orders you ever made. Just in case you want to order again.</p>
+      <% if admin? %>
+        <p class="text-muted">Since you are an admin, all orders will be displayed.</p>
+      <% end %>
     </div>
 
     <table class="table table-hover">

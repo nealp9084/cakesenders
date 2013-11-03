@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # if you are not an admin, you cannot view the user listing
   before_action :deny_nonadmins, only: [:index]
+  # if the account is not yours, you cannot change it
   before_action :deny_nonself, only: [:show, :edit, :update, :destroy]
+  # if you are logged in, you cannot create more accounts
   before_action :deny_loggedin, only: [:new, :create]
 
   def deny_nonadmins

@@ -1,7 +1,10 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  # if you are not logged in, you cannot access anyone's order history
   before_action :deny_nonloggedin
+  # if the order is not yours, you cannot access it
   before_action :deny_nonown, only: [:show, :edit, :update, :destroy]
+  # if you are not an admin, you cannot modify an order
   before_action :deny_nonadmins, only: [:edit, :update, :destroy]
 
   def deny_nonloggedin
@@ -61,7 +64,7 @@ class OrdersController < ApplicationController
     @order.user = current_user unless admin?
 
     respond_to do |format|
-      if admin? and @order.save
+      if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
       else
         format.html { render action: 'new' }
@@ -75,7 +78,7 @@ class OrdersController < ApplicationController
     @order.user = current_user unless admin?
 
     respond_to do |format|
-      if @order.save
+      if admin? && Goodie.exists?(order_params[goodie_id]) && @order.save
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
       else
         format.html { render action: 'edit' }

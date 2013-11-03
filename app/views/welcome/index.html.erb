@@ -11,7 +11,11 @@
       <img id="cupcake" src="<%= asset_path 'detail_bb_Chocolate_Cupcake.png' %>"/>
     </center>
     <p>Do you ever want some cake but don't feel like going to the bakery? No worries, we'll bring the bakery to you!</p>
-    <p><%= link_to 'Sign me up!', :signup, class: 'btn btn-primary btn-lg' %></p>
+    <% if logged_in? %>
+      <p><%= link_to 'Start ordering!', :goodies, class: 'btn btn-primary btn-lg' %></p>
+    <% else %>
+      <p><%= link_to 'Sign me up!', :signup, class: 'btn btn-primary btn-lg' %></p>
+    <% end %>
   </div>
 </div>
 

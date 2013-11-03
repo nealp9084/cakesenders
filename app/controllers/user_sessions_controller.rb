@@ -14,16 +14,15 @@ class UserSessionsController < ApplicationController
 
   def deny_loggedout
     unless logged_in?
-      flash[:status] = 'alert-warning'
-      flash[:notice] = 'You are already logged out.'
       redirect_to :root
     end
   end
 
+  # GET /login
   def login
-    # login form page
   end
 
+  # POST /logins
   def login_attempt
     # authentication stuff
     us_params = params[:user_session]
@@ -45,12 +44,22 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  # GET /logout
   def logout
-    session[:user_id] = nil
-    reset_session
+    respond_to do |format|
+      reset_session
 
-    flash[:status] = 'alert-success'
-    flash[:notice] = 'Successfully logged out.'
-    redirect_to :root
+      format.html do
+        flash[:status] = 'alert-success'
+        flash[:notice] = 'You have successfully logged out.'
+        redirect_to :root
+      end
+    end
   end
+
+  private
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def comment_params
+      params.require(:user_session).permit(:username, :password)
+    end
 end

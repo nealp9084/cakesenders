@@ -41,7 +41,7 @@ Distinct functionalities:
 
 * Leave comments on goodies
 
-* Email notification when a user account is created
+* Email notification when a user account is created (Note that this functionality CANNOT be tested on a noncommercial network because sendmail will be blocked by the firewall)
 
 The entire web application is built with Ruby on Rails. Whenever Rails interacts with the database, it uses parameterized queries, so SQL injection is not possible.
 

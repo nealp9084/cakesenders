@@ -1,41 +1,53 @@
-<h1>Listing users</h1>
+<% if has_flash? %>
+  <div class="<%= flash_class %>">
+    <p><%= flash_notice %></p>
+  </div>
+<% end %>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Realname</th>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Customer token</th>
-      <th>Twitter</th>
-      <th>Facebook</th>
-      <th>Admin</th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="table-responsive">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1>Listing Users</h1>
+    </div>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.realname %></td>
-        <td><%= user.username %></td>
-        <td><%= user.email %></td>
-        <td><%= user.customer_token %></td>
-        <td><%= user.twitter_id %></td>
-        <td><%= user.facebook_id %></td>
-        <td><%= user.admin %></td>
-        <td>
-          <div class="btn-group">
-            <%= link_to 'Show', user, class: 'btn btn-primary' %>
-            <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-warning' %>
-            <%= link_to 'Destroy', user, method: :delete, class: 'btn btn-danger' %>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <div class="panel-body">
+      <p>This page contains all of the users who have signed up for an account.</p>
+    </div>
 
-<br>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Realname</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Customer token</th>
+          <th>Twitter</th>
+          <th>Facebook</th>
+          <th>Admin</th>
+          <th></th>
+        </tr>
+      </thead>
 
-<%= link_to 'New User', new_user_path %>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.realname %></td>
+            <td><%= user.username %></td>
+            <td><%= user.email %></td>
+            <td><%= user.customer_token %></td>
+            <td><%= user.twitter_id %></td>
+            <td><%= user.facebook_id %></td>
+            <td><%= user.admin %></td>
+            <td>
+              <div class="btn-group">
+                <%= link_to 'Show', user, class: 'btn btn-primary' %>
+                <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-warning' %>
+                <%= link_to 'Destroy', user, method: :delete, class: 'btn btn-danger' %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
