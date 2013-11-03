@@ -1,20 +1,27 @@
 class GoodiesController < ApplicationController
-  before_action :set_goody, only: [:show, :edit, :update, :destroy]
+  before_action :set_goodie, only: [:show, :edit, :update, :destroy]
+  before_action :deny_nonadmins, only: [:new, :edit, :create, :update, :destroy]
+
+  def deny_nonadmins
+    unless admin?
+      flash[:status] = 'alert-danger'
+      flash[:notice] = "You don't have permission to do that."
+      redirect_to :goodies
+    end
+  end
 
   # GET /goodies
-  # GET /goodies.json
   def index
-    @goodies = Goody.all
+    @goodies = Goodie.all
   end
 
   # GET /goodies/1
-  # GET /goodies/1.json
   def show
   end
 
   # GET /goodies/new
   def new
-    @goody = Goody.new
+    @goodie = Goodie.new
   end
 
   # GET /goodies/1/edit
@@ -22,53 +29,49 @@ class GoodiesController < ApplicationController
   end
 
   # POST /goodies
-  # POST /goodies.json
   def create
-    @goody = Goody.new(goody_params)
+    @goodie = Goodie.new(goodie_params)
 
     respond_to do |format|
-      if @goody.save
-        format.html { redirect_to @goody, notice: 'Goody was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @goody }
+      if @goodie.save
+        format.html { redirect_to @goodie, notice: 'Goodie was successfully created.' }
       else
         format.html { render action: 'new' }
-        format.json { render json: @goody.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /goodies/1
-  # PATCH/PUT /goodies/1.json
   def update
     respond_to do |format|
-      if @goody.update(goody_params)
-        format.html { redirect_to @goody, notice: 'Goody was successfully updated.' }
-        format.json { head :no_content }
+      if @goodie.update(goodie_params)
+        format.html do
+          flash[:status] = 'alert-success'
+          flash[:notice] = 'Goodie was successfully updated.'
+          redirect_to @goodie
+        end
       else
         format.html { render action: 'edit' }
-        format.json { render json: @goody.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /goodies/1
-  # DELETE /goodies/1.json
   def destroy
-    @goody.destroy
+    @goodie.destroy
     respond_to do |format|
       format.html { redirect_to goodies_url }
-      format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_goody
-      @goody = Goody.find(params[:id])
+    def set_goodie
+      @goodie = Goodie.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def goody_params
-      params.require(:goody).permit(:name, :description, :price)
+    def goodie_params
+      params.require(:goodie).permit(:name, :description, :price, :image_url)
     end
 end

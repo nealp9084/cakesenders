@@ -1,19 +1,62 @@
-<p id="notice"><%= notice %></p>
+<% if has_flash? %>
+  <div class="<%= flash_class %>">
+    <p><%= flash_notice %></p>
+  </div>
+<% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @goody.name %>
-</p>
+<div class="row">
+  <div class="col-md-10 col-sm-10">
+    <div class="page-header">
+      <h1><%= @goodie.name %></h1>
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-2">
+    <h3 id="goodie_price">Only <%= goodie_price(@goodie) %></h3>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @goody.description %>
-</p>
+<div>
+  <%= image_tag goodie_image(@goodie), class: 'img-responsive' %>
+</div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @goody.price %>
-</p>
+<div>
+  <article>
+    <p><%= @goodie.description %></p>
+  </article>
+</div>
 
-<%= link_to 'Edit', edit_goody_path(@goody) %> |
-<%= link_to 'Back', goodies_path %>
+<div class="row">
+  <div class="col-md-4 col-sm-4">
+    <div class="btn-group">
+      <%= link_to 'Back', goodies_path, class: 'btn btn-default' %>
+      <% if admin? %>
+        <%= link_to 'Edit', edit_goodie_path(@goodie), class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-8 col-sm-8">
+    <div class="pull-right">
+      <%= link_to 'Purchase!', new_order_path, class: 'btn btn-success' %>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<h3>Comments</h3>
+
+<div>
+  <% @goodie.comments.each do |comment| %>
+    <blockquote>
+      <p><%= comment.content %></p>
+      <small>
+        <cite><%= comment.user.username %></cite> at <%= localize comment.created_at %>
+      </small>
+    </blockquote>
+  <% end %>
+</div>
+
+<div>
+  <%= link_to 'Add your own comment', new_comment_path, class: 'btn btn-default btn-xs' %>
+</div>

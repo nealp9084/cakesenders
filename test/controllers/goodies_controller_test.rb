@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GoodiesControllerTest < ActionController::TestCase
   setup do
-    @goody = goodies(:one)
+    @goodie = goodies(:one)
   end
 
   test "should get index" do
@@ -16,32 +16,32 @@ class GoodiesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create goody" do
-    assert_difference('Goody.count') do
-      post :create, goody: { description: @goody.description, name: @goody.name, price: @goody.price }
+  test "should create goodie" do
+    assert_difference('Goodie.count') do
+      post :create, goodie: { description: @goodie.description, name: @goodie.name, price: @goodie.price }
     end
 
-    assert_redirected_to goody_path(assigns(:goody))
+    assert_redirected_to goody_path(assigns(:goodie))
   end
 
-  test "should show goody" do
-    get :show, id: @goody
+  test "should show goodie" do
+    get :show, id: @goodie
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @goody
+    get :edit, id: @goodie
     assert_response :success
   end
 
-  test "should update goody" do
-    patch :update, id: @goody, goody: { description: @goody.description, name: @goody.name, price: @goody.price }
-    assert_redirected_to goody_path(assigns(:goody))
+  test "should update goodie" do
+    patch :update, id: @goodie, goodie: { description: @goodie.description, name: @goodie.name, price: @goodie.price }
+    assert_redirected_to goody_path(assigns(:goodie))
   end
 
-  test "should destroy goody" do
-    assert_difference('Goody.count', -1) do
-      delete :destroy, id: @goody
+  test "should destroy goodie" do
+    assert_difference('Goodie.count', -1) do
+      delete :destroy, id: @goodie
     end
 
     assert_redirected_to goodies_path

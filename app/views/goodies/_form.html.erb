@@ -1,29 +1,37 @@
-<%= form_for(@goody) do |f| %>
-  <% if @goody.errors.any? %>
+<%= form_for(@goodie, html: { role: 'form' }) do |f| %>
+  <% if @goodie.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@goody.errors.count, "error") %> prohibited this goody from being saved:</h2>
+      <p>Uh oh, something's wrong!</p>
 
       <ul>
-      <% @goody.errors.full_messages.each do |msg| %>
+      <% @goodie.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.text_field :price %>
+
+  <div class="form-group">
+    <%= f.label :price %>
+    <div class="input-group">
+      <span class="input-group-addon">$</span>
+      <%= f.text_field :price, value: format_price(f.object.price), class: 'form-control', id: 'goodie_price_box' %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="form-group">
+    <%= f.label :image_url, 'Image URL' %>
+    <%= f.text_field :image_url, class: 'form-control', type: 'url' %>
   </div>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>

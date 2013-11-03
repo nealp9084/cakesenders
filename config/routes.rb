@@ -1,8 +1,14 @@
 Cakesenders::Application.routes.draw do
-  get "welcome/index"
+  resources :comments
+
+  get 'welcome/index'
   root 'welcome#index'
 
   resources :users
+  get 'signup' => 'users#new'
+  get 'login' => 'user_sessions#login'
+  post 'login' => 'user_sessions#login_attempt'
+  get 'logout' => 'user_sessions#logout'
   resources :orders
   resources :goodies
 

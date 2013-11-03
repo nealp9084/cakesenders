@@ -1,5 +1,13 @@
-<h1>New order</h1>
+<% if has_flash? %>
+  <div class="<%= flash_class %>">
+    <p><%= flash_notice %></p>
+  </div>
+<% end %>
+
+<h1>New Order</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', orders_path %>
+<hr>
+
+<%= link_to 'Back', orders_path, class: 'btn btn-default' %>

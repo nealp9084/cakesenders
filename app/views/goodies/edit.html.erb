@@ -1,6 +1,16 @@
-<h1>Editing goody</h1>
+<% if has_flash? %>
+  <div class="<%= flash_class %>">
+    <p><%= flash_notice %></p>
+  </div>
+<% end %>
+
+<h1>Editing Goodie</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @goody %> |
-<%= link_to 'Back', goodies_path %>
+<hr>
+
+<div class="btn-group">
+  <%= link_to 'Show', @goodie, class: 'btn btn-default' %>
+  <%= link_to 'Back', goodies_path, class: 'btn btn-default' %>
+</div>
