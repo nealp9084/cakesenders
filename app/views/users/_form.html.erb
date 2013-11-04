@@ -41,5 +41,10 @@
       <%= f.text_field :facebook_id, class: 'form-control', placeholder: 'username' %>
     </div>
   </div>
-  <%= f.submit 'Sign Up!', class: 'btn btn-primary' %>
+
+  <% if @user.new_record? %>
+    <%= f.submit 'Sign Up!', class: 'btn btn-primary' %>
+  <% else %>
+    <%= f.submit 'Update', class: 'btn btn-primary' %>
+  <% end %>
 <% end %>
