@@ -49,7 +49,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user unless admin?
 
     respond_to do |format|
-      if Goodie.exists?(comment_params[goodie_id]) && @comment.save
+      if Goodie.exists?(comment_params[:goodie_id]) && @comment.save
         format.html { redirect_to @comment.goodie, notice: 'Comment was successfully created.' }
       else
         format.html { render action: 'new' }
@@ -63,7 +63,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user unless admin?
 
     respond_to do |format|
-      if @comment.save
+      if Goodie.exists?(comment_params[:goodie_id]) && @comment.save
         format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
       else
         format.html { render action: 'edit' }

@@ -64,7 +64,7 @@ class OrdersController < ApplicationController
     @order.user = current_user unless admin?
 
     respond_to do |format|
-      if @order.save
+      if Goodie.exists?(order_params[:goodie_id]) && @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
       else
         format.html { render action: 'new' }
@@ -78,7 +78,7 @@ class OrdersController < ApplicationController
     @order.user = current_user unless admin?
 
     respond_to do |format|
-      if admin? && Goodie.exists?(order_params[goodie_id]) && @order.save
+      if Goodie.exists?(order_params[:goodie_id]) && @order.save
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
       else
         format.html { render action: 'edit' }
