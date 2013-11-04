@@ -3,8 +3,15 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-# Use mysql as the database for Active Record
-gem 'sqlite3'
+# Use mysql as the database for Active Record in production
+group :production do
+  gem 'mysql2'
+end
+
+# Use sqlite3 as the database for Active Record while developing and testing
+group :development, :test do
+  gem 'sqlite3'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -42,9 +49,11 @@ gem 'scrypt'
 # Validate email addresses
 gem 'email_validator'
 
-# Debugging helpers
-gem 'binding_of_caller'
-gem 'better_errors'
+# Use the following debugging gems only when developing and testing
+group :development, :test do
+  gem 'binding_of_caller'
+  gem 'better_errors'
+end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
