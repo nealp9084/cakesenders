@@ -5,7 +5,7 @@
 <% end %>
 
 <p>
-  <strong>Realname:</strong>
+  <strong>Real Name:</strong>
   <%= @user.realname %>
 </p>
 
@@ -19,25 +19,32 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <strong>Customer token:</strong>
-  <%= @user.customer_token %>
-</p>
+<% if @user.customer_token && !@user.customer_token.blank? %>
+  <p>
+    <strong>Customer token:</strong>
+    <%= @user.customer_token %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Twitter:</strong>
-  <%= @user.twitter_id %>
-</p>
+<% if @user.twitter_id && !@user.twitter_id.blank? %>
+  <p>
+    <strong>Twitter:</strong>
+    <%= @user.twitter_id %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Facebook:</strong>
-  <%= @user.facebook_id %>
-</p>
+<% if @user.facebook_id && !@user.facebook_id.blank? %>
+  <p>
+    <strong>Facebook:</strong>
+    <%= @user.facebook_id %>
+  </p>
+<% end %>
 
-<p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
-</p>
+<% if @user.admin %>
+  <p>
+    <strong>This user is a website administrator.</strong>
+  </p>
+<% end %>
 
 <div class="btn-group">
   <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-warning' %>
