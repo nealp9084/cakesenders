@@ -5,21 +5,19 @@
 <% end %>
 
 <div class="jumbotron">
-  <div class="container">
-    <h1>We send baked goods.</h1>
-    <center>
-      <img id="cupcake" src="<%= asset_path 'detail_bb_Chocolate_Cupcake.png' %>"/>
-    </center>
-    <p>Do you ever want some cake but don't feel like going to the bakery? No worries, we'll bring the bakery to you!</p>
-    <% if logged_in? %>
-      <p><%= link_to 'Start ordering!', :goodies, class: 'btn btn-primary btn-lg' %></p>
-    <% else %>
-      <p><%= link_to 'Sign me up!', :signup, class: 'btn btn-primary btn-lg' %></p>
-    <% end %>
-  </div>
+  <h1>We send baked goods.</h1>
+  <center>
+    <img id="cupcake" src="<%= asset_path 'detail_bb_Chocolate_Cupcake.png' %>"/>
+  </center>
+  <p>Do you ever want some cake but don't feel like going to the bakery? No worries, we'll bring the bakery to you!</p>
+  <% if logged_in? %>
+    <p><%= link_to 'Start ordering!', :goodies, class: 'btn btn-primary btn-lg', role: 'button' %></p>
+  <% else %>
+    <p><%= link_to 'Sign me up!', :signup, class: 'btn btn-primary btn-lg', role: 'button' %></p>
+  <% end %>
 </div>
 
-<div class="container">
+<div>
   <div class="row">
     <div class="col-md-3 col-sm-3">
       <h3><i class="glyphicon glyphicon-hand-right"></i> How It Works</h3>
@@ -30,7 +28,7 @@
       <p>Don't limit yourself to cake. We'll send whatever the bakery's got. Cookies, pies, and brownies are all available!</p>
     </div>
     <div class="col-md-3 col-sm-3">
-      <h3><i class="glyphicon glyphicon-flash"></i> Ridiculously Easy</h3>
+      <h3><i class="glyphicon glyphicon-flash"></i> Insanely Easy</h3>
       <p>You can place your order on any device, in a matter of seconds. You can even place an order from FB/Twitter.</p>
     </div>
     <div class="col-md-3 col-sm-3">
