@@ -31,7 +31,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  # TODO: validation on password quality?
   def update(user_params)
     new_pw = user_params['password_hash']
 
