@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   # if you are not logged in, you cannot change anything
-  before_action :deny_nonloggedin, only: [:create, :edit, :update, :destroy]
+  before_action :deny_nonloggedin, only: [:new, :create, :edit, :update, :destroy]
   # if the comment is not yours, you cannot modify it
   before_action :deny_nonown, only: [:edit, :update, :destroy]
 
