@@ -13,8 +13,8 @@ Cakesenders::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Do care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -26,4 +26,9 @@ Cakesenders::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  # dummy ActionMailer configuration
+  config.domain_name = 'localhost'
+  config.action_mailer.default_options = { from: "themuffinman@#{config.domain_name}" }
+  config.action_mailer.default_url_options = { host: config.domain_name, port: 3000 }
 end

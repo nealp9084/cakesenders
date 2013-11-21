@@ -78,7 +78,12 @@ Cakesenders::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  # ActionMailer cert issues
+  # working ActionMailer configuration
+  config.domain_name = 'cakesenders.epicdomain.name'
+  config.action_mailer.default_options = { from: "themuffinman@#{config.domain_name}" }
+  config.action_mailer.default_url_options = { host: config.domain_name }
+
+  # workaround for ActionMailer cert issues
   config.action_mailer.smtp_settings = {
     enable_starttls_auto: false,
     openssl_verify_mode: 'none'
