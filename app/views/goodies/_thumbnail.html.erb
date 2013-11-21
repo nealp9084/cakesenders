@@ -10,10 +10,10 @@
       </div>
       <div class="col-md-9 col-sm-9">
         <div class="btn-group pull-right">
-          <%= link_to 'Details', goodie, class: 'btn btn-xs btn-primary' %>
+          <%= link_to 'Details', goodie, class: 'btn btn-xs btn-primary', role: 'button' %>
           <% if admin? %>
-            <%= link_to 'Edit', edit_goodie_path(goodie), class: 'btn btn-xs btn-warning' %>
-            <%= link_to 'Destroy', goodie, method: :delete, class: 'btn btn-xs btn-danger' %>
+            <%= link_to 'Edit', edit_goodie_path(goodie), class: 'btn btn-xs btn-warning', role: 'button' %>
+            <%= link_to 'Destroy', goodie, method: :delete, class: 'btn btn-xs btn-danger', role: 'button' %>
           <% end %>
         </div>
       </div>

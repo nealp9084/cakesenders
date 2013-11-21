@@ -26,7 +26,7 @@
 </div>
 
 <div>
-  <%= link_to 'Purchase!', new_order_path, class: 'btn btn-success' %>
+  <%= link_to 'Purchase!', new_order_path, class: 'btn btn-lg btn-success', role: 'button' %>
 </div>
 
 <hr>
@@ -47,7 +47,7 @@
 </div>
 
 <div>
-  <%= link_to 'Add your own comment', new_comment_path, class: 'btn btn-default btn-xs' %>
+  <%= link_to 'Add your own comment', new_comment_path, class: 'btn btn-xs', role: 'button' %>
 </div>
 
 <hr>
@@ -55,7 +55,7 @@
 <div class="btn-group">
   <%= link_to 'Back', goodies_path, class: 'btn btn-default' %>
   <% if admin? %>
-    <%= link_to 'Edit', edit_goodie_path(@goodie), class: 'btn btn-warning' %>
-    <%= link_to 'Destroy', @goodie, method: :delete, class: 'btn btn-danger' %>
+    <%= link_to 'Edit', edit_goodie_path(@goodie), class: 'btn btn-warning', role: 'button' %>
+    <%= link_to 'Destroy', @goodie, method: :delete, class: 'btn btn-danger', role: 'button' %>
   <% end %>
 </div>

@@ -40,9 +40,9 @@
             <td><%= user.admin %></td>
             <td>
               <div class="btn-group">
-                <%= link_to 'Show', user, class: 'btn btn-primary' %>
-                <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-warning' %>
-                <%= link_to 'Destroy', user, method: :delete, class: 'btn btn-danger' %>
+                <%= link_to 'Show', user, class: 'btn btn-primary', role: 'button' %>
+                <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-warning', role: 'button' %>
+                <%= link_to 'Destroy', user, method: :delete, class: 'btn btn-danger', role: 'button' %>
               </div>
             </td>
           </tr>

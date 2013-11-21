@@ -24,7 +24,7 @@
           <% if admin? %>
             <th>User</th>
           <% end %>
-          <th>Content</th>
+          <th>Comment</th>
           <th></th>
         </tr>
       </thead>
@@ -39,9 +39,9 @@
             <td><%= comment.content %></td>
             <td>
               <div class="btn-group">
-                <%= link_to 'Show', comment, class: 'btn btn-primary' %>
-                <%= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-warning' %>
-                <%= link_to 'Destroy', comment, method: :delete, class: 'btn btn-danger' %>
+                <%= link_to 'Show', comment, class: 'btn btn-primary', role: 'button' %>
+                <%= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-warning', role: 'button' %>
+                <%= link_to 'Destroy', comment, method: :delete, class: 'btn btn-danger', role: 'button' %>
               </div>
             </td>
           </tr>
@@ -50,5 +50,3 @@
     </table>
   </div>
 </div>
-
-<%= link_to 'New Comment', new_comment_path, class: 'btn btn-success' %>
