@@ -33,13 +33,6 @@
   </p>
 <% end %>
 
-<% if @user.facebook_id && !@user.facebook_id.blank? %>
-  <p>
-    <strong>Facebook:</strong>
-    <%= @user.facebook_id %>
-  </p>
-<% end %>
-
 <% if @user.admin %>
   <p>
     <strong>This user is a website administrator.</strong>

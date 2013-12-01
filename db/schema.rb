@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131103003607) do
+ActiveRecord::Schema.define(version: 20131201212233) do
 
   create_table "comments", force: true do |t|
     t.integer  "goodie_id"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20131103003607) do
     t.string   "email",                          null: false
     t.string   "customer_token"
     t.string   "twitter_id"
-    t.string   "facebook_id"
     t.boolean  "admin",          default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
