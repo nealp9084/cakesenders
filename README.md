@@ -28,9 +28,13 @@
 
 * Comments on goodies: anyone who is logged in can leave a comment on a goodie. They can also modify their comment or delete it. Users cannot edit/delete comments they do not own. Anyone can view the comments that people have left on a goodie. Admins can do whatever they want.
 
-* Email notification: when a user account is created, an email is sent out to the associated email address. Note that this functionality **cannot** be tested on a noncommercial network because `sendmail` will be blocked by the firewall.
+* "Welcome Aboard" email: when a user account is created, an email is sent out to the associated email address. Note that this functionality **cannot** be tested on a noncommercial network because `sendmail` will be blocked by the firewall.
+
+* Order confirmation email: when a user places an order, the website sends an email to the user. The email contains a few details about the order, just to make sure everyone is on the same page. Note that this functionality **cannot** be tested on a noncommercial network because `sendmail` will be blocked by the firewall.
 
 * Mobile-friendly: the entire site works nicely on mobile devices as well. The site embraces responsive design, so the site's appearance is largely device-independent. The site uses Twitter Bootstrap 3 for all of the visual styles, so it should look nice on both desktop computers and mobile devices.
+
+* Social network integration: users can place orders without even entering the website. All they need to do is send a tweet to our twitter bot. If the user has payment credentials on hand, an order will be placed automatically.
 
 ##Security:
 
