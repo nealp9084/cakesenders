@@ -65,6 +65,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if Goodie.exists?(order_params[:goodie_id]) && @order.save
+        OrderMailer.confirmation_email(@order)
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
       else
         format.html { render action: 'new' }

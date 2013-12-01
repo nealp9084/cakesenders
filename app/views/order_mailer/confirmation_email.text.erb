@@ -1,0 +1,8 @@
+Your baked goods are on the way!
+===============================================
+
+Hi <%= @user.realname %>,
+
+We just wanted to let you know your order has been placed. Just to confirm, you ordered <%= @goodie.name.with_indefinite_article %> for <%= number_to_currency @goodie.price %>. It will be delivered to <%= @destination %> shortly.
+
+Thank you for shopping with us and enjoy your baked goods!

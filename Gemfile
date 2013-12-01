@@ -55,6 +55,9 @@ group :development, :test do
   gem 'better_errors'
 end
 
+# Generate text content more easily
+gem 'indefinite_article'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your baked goods are on the way!</h1>
+    <p>
+      Hi <%= @user.realname %>,
+    </p>
+    <p>
+      We just wanted to let you know your order has been placed. Just to confirm, you ordered <%= @goodie.name.indefinite_article %> <a href="<%= url_for controller: 'goodies', action: 'show', id: @goodie.id, only_path: false %>"><strong><%= @goodie.name %></strong></a> for <strong><%= number_to_currency @goodie.price %></strong>. It will be delivered to <strong><%= @destination %></strong> shortly.
+    </p>
+    <p>Thank you for shopping with us and enjoy your baked goods!</p>
+  </body>
+</html>
