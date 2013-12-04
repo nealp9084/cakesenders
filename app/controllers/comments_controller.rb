@@ -4,6 +4,8 @@ class CommentsController < ApplicationController
   before_action :deny_nonloggedin, only: [:new, :create, :edit, :update, :destroy]
   # if the comment is not yours, you cannot modify it
   before_action :deny_nonown, only: [:edit, :update, :destroy]
+  # the comment must belong to the goodie
+  before_action :deny_id_mismatch, only: [:show, :edit, :update, :destroy]
 
   def deny_nonloggedin
     unless logged_in?
@@ -21,6 +23,16 @@ class CommentsController < ApplicationController
     end
   end
 
+  def deny_id_mismatch
+    g = Goodie.find(params[:goodie_id])
+
+    unless g.comments.member?(@comment)
+      flash[:status] = 'alert-danger'
+      flash[:notice] = "That comment doesn't belong to this goodie."
+      redirect_to g
+    end
+  end
+
   # GET /comments
   def index
     if admin?
@@ -30,20 +42,21 @@ class CommentsController < ApplicationController
     end
   end
 
-  # GET /comments/1
+  # GET /goodies/1/comments/1
   def show
   end
 
-  # GET /comments/new
+  # GET /goodies/1/comments/new
   def new
     @comment = Comment.new
+    @comment.goodie = Goodie.find(params[:goodie_id])
   end
 
-  # GET /comments/1/edit
+  # GET /goodies/1/comments/1/edit
   def edit
   end
 
-  # POST /comments
+  # POST /goodies/1/comments
   def create
     @comment = Comment.new(comment_params)
     @comment.user = current_user unless admin?
@@ -57,21 +70,21 @@ class CommentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /comments/1
+  # PATCH/PUT /goodies/1/comments/1
   def update
     @comment.assign_attributes(comment_params)
     @comment.user = current_user unless admin?
 
     respond_to do |format|
-      if Goodie.exists?(comment_params[:goodie_id]) && @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+      if @comment.save
+        format.html { redirect_to [@comment.goodie, @comment], notice: 'Comment was successfully updated.' }
       else
         format.html { render action: 'edit' }
       end
     end
   end
 
-  # DELETE /comments/1
+  # DELETE /goodies/1/comments/1
   def destroy
     @comment.destroy
     respond_to do |format|

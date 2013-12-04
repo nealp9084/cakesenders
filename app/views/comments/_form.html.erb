@@ -1,4 +1,4 @@
-<%= form_for(@comment, html: { role: 'form' }) do |f| %>
+<%= form_for([@comment.goodie, @comment], html: { role: 'form' }) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -10,11 +10,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= f.label :goodie_id %>
-    <%= f.collection_select :goodie_id, Goodie.all, :id, :name, class: 'form-control' %>
-  </div>
 
   <% if admin? %>
     <div class="form-group">

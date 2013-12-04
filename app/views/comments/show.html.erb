@@ -16,7 +16,7 @@
 <div class="btn-group">
   <%= link_to 'Back', comments_path, class: 'btn btn-default', role: 'button' %>
   <% if @comment.user == current_user || admin? %>
-    <%= link_to 'Edit', edit_comment_path(@comment), class: 'btn btn-warning', role: 'button' %>
-    <%= link_to 'Destroy', @comment, method: :delete, class: 'btn btn-danger', role: 'button' %>
+    <%= link_to 'Edit', edit_goodie_comment_path(@comment.goodie, @comment), class: 'btn btn-warning', role: 'button' %>
+    <%= link_to 'Destroy', [@comment.goodie, @comment], method: :delete, class: 'btn btn-danger', role: 'button' %>
   <% end %>
 </div>

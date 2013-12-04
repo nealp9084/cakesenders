@@ -1,6 +1,4 @@
 Cakesenders::Application.routes.draw do
-  resources :comments
-
   get 'welcome/index'
   root 'welcome#index'
 
@@ -10,7 +8,10 @@ Cakesenders::Application.routes.draw do
   post 'login' => 'user_sessions#login_attempt'
   get 'logout' => 'user_sessions#logout'
   resources :orders
-  resources :goodies
+  resources :goodies do
+    resources :comments
+  end
+  get 'comments' => 'comments#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

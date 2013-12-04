@@ -38,16 +38,16 @@
     <blockquote>
       <p><%= comment.content %></p>
       <small>
-        <a href="<%= url_for comment %>">
+        <%= link_to [@goodie, comment] do %>
           <cite><%= comment.user.username %></cite> at <%= localize comment.created_at %>
-        </a>
+        <% end %>
       </small>
     </blockquote>
   <% end %>
 </div>
 
 <div>
-  <%= link_to 'Add your own comment', new_comment_path, class: 'btn btn-default btn-xs', role: 'button' %>
+  <%= link_to 'Add your own comment', new_goodie_comment_path(@goodie), class: 'btn btn-default btn-xs', role: 'button' %>
 </div>
 
 <hr>
