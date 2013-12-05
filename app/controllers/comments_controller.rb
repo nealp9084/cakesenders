@@ -50,6 +50,7 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     @comment.goodie = Goodie.find(params[:goodie_id])
+    @comment.user = current_user
   end
 
   # GET /goodies/1/comments/1/edit
@@ -60,9 +61,10 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user = current_user unless admin?
+    @comment.goodie = Goodie.find_by_id(params[:goodie_id])
 
     respond_to do |format|
-      if Goodie.exists?(comment_params[:goodie_id]) && @comment.save
+      if @comment.goodie && @comment.save
         format.html { redirect_to @comment.goodie, notice: 'Comment was successfully created.' }
       else
         format.html { render action: 'new' }
@@ -74,9 +76,10 @@ class CommentsController < ApplicationController
   def update
     @comment.assign_attributes(comment_params)
     @comment.user = current_user unless admin?
+    @comment.goodie ||= Goodie.find_by_id(params[:goodie_id])
 
     respond_to do |format|
-      if @comment.save
+      if @comment.goodie && @comment.save
         format.html { redirect_to [@comment.goodie, @comment], notice: 'Comment was successfully updated.' }
       else
         format.html { render action: 'edit' }
