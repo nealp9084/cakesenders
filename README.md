@@ -32,6 +32,8 @@
 
 * Order confirmation email: when a user places an order, the website sends an email to the user. The email contains a few details about the order, just to make sure everyone is on the same page. Note that this functionality **cannot** be tested on a noncommercial network because `sendmail` will be blocked by the firewall.
 
+* Markdown support: Markdown is the preferred markup language for online websites (such as reddit, HN, etc.), as opposed to things like BBCode. Pretty much every major text field on the site supports Markdown. You can format comments and goodie descriptions with Markdown and the website will render them properly!
+
 * Mobile-friendly: the entire site works nicely on mobile devices as well. The site embraces responsive design, so the site's appearance is largely device-independent. The site uses Twitter Bootstrap 3 for all of the visual styles, so it should look nice on both desktop computers and mobile devices.
 
 * Social network integration: users can place orders without even entering the website. All they need to do is send a tweet to our twitter bot. If the user has payment credentials on hand, an order will be placed automatically.
