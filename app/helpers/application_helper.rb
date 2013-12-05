@@ -1,3 +1,5 @@
+require 'redcarpet/render_strip'
+
 module ApplicationHelper
   def has_flash?
     flash[:status] != nil
@@ -30,5 +32,27 @@ module ApplicationHelper
 
   def partial(file, locals = {})
     render partial: file, locals: locals
+  end
+
+  @@markdown = nil
+  @@stripped_markdown = nil
+
+  def md(text)
+    unless @@markdown
+      render_options = { filter_html: true, no_styles: true, safe_links_only: true }
+      renderer = Redcarpet::Render::HTML.new(render_options)
+      @@markdown = Redcarpet::Markdown.new(renderer, autolink: true)
+    end
+
+    @@markdown.render(text).html_safe
+  end
+
+  def smd(text)
+    unless @@stripped_markdown
+      renderer = Redcarpet::Render::StripDown.new
+      @@stripped_markdown = Redcarpet::Markdown.new(renderer, autolink: true)
+    end
+
+    @@stripped_markdown.render(text)
   end
 end

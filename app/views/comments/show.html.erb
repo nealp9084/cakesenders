@@ -5,7 +5,7 @@
 <% end %>
 
 <blockquote>
-  <p><%= @comment.content %></p>
+  <article><%= md @comment.content %></article>
   <small>
     <cite><%= @comment.user.username %></cite> commenting on <%= link_to @comment.goodie.name, @comment.goodie %> at <%= localize @comment.created_at %>
   </small>

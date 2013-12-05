@@ -20,13 +20,11 @@
 </div>
 
 <div>
-  <article>
-    <p><%= @goodie.description %></p>
-  </article>
+  <article><%= md @goodie.description %></article>
 </div>
 
 <div>
-  <%= link_to 'Purchase!', new_order_path, class: 'btn btn-lg btn-success', role: 'button' %>
+  <%= link_to 'Order it!', new_order_path(goodie_id: @goodie), class: 'btn btn-lg btn-success', role: 'button' %>
 </div>
 
 <hr>
@@ -36,7 +34,7 @@
 <div>
   <% @goodie.comments.each do |comment| %>
     <blockquote>
-      <p><%= comment.content %></p>
+      <article><%= md comment.content %></article>
       <small>
         <%= link_to [@goodie, comment] do %>
           <cite><%= comment.user.username %></cite> at <%= localize comment.created_at %>

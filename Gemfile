@@ -49,6 +49,9 @@ gem 'scrypt'
 # Validate email addresses
 gem 'email_validator'
 
+# Markdown for comments
+gem 'redcarpet'
+
 # Use the following debugging gems only when developing and testing
 group :development, :test do
   gem 'binding_of_caller'

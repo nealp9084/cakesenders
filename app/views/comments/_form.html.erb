@@ -23,6 +23,9 @@
   <div class="form-group">
     <%= f.label :content, 'Your comment' %>
     <%= f.text_area :content, class: 'form-control' %>
+    <p class="text-muted">
+      You can use <%= link_to 'Markdown', 'https://daringfireball.net/projects/markdown/basics' %> here.
+    </p>
   </div>
 
   <%= f.submit class: 'btn btn-primary' %>

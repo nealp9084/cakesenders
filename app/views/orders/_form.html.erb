@@ -35,5 +35,9 @@
     <%= f.text_field :charge_token, class: 'form-control' %>
   </div>
 
-  <%= f.submit class: 'btn btn-success' %>
+  <% if @order.new_record? %>
+    <%= f.submit 'Purchase!', class: 'btn btn-success' %>
+  <% else %>
+    <%= f.submit 'Update', class: 'btn btn-primary' %>
+  <% end %>
 <% end %>

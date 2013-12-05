@@ -52,6 +52,11 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+
+    goodie = Goodie.find_by_id(params[:goodie_id])
+    @order.goodie = goodie if goodie
+
+    @order.user = current_user
   end
 
   # GET /orders/1/edit
