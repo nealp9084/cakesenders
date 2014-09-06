@@ -1,4 +1,10 @@
-#README
+#Cakesenders
+
+Cakesenders is a web app I wrote for my E-Commence (University of Virginia CS 4753) course. Cakesenders is the frontend for an imaginary business that sells baked goods over the internet. Pretty much everything on the website works, except for actually placing orders (I didn't bother figuring out how to set up a Stripe account).
+
+[To view a live version of this site, click here!](http://cakesenders.epicdomain.name)
+
+#Basic Requirements
 
 * This application requires Ruby 2.0.0 or higher and Rails 4 or higher
 
